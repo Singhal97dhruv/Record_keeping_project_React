@@ -6,13 +6,12 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
  function App() {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
+  const [form, setForm] = useState({});
+  // const [email, setEmail] = useState();
   const [data, setData] = useState([]);
   const addData = () => {
-    setData([...data, { name: name, email: email }]);
-    setName("");
-    setEmail("");
+    setData([...data, form]);
+    setForm(form);
   }
   const removeItem=(index)=>{
       let arr=data;
@@ -25,9 +24,9 @@ import { useState } from 'react';
       <div className="form">
 
         <Stack spacing={2} direction="row">
-          <TextField value={name} id="outlined-basic" label="Name" variant="outlined" onChange={(event) => setName(event.target.value)} />
+          <TextField value={form.name} id="outlined-basic" label="Name" variant="outlined" onChange={(event) => setForm({...form,name:event.target.value})} />
 
-          <TextField value={email} id="outlined-basic" label="Email" variant="outlined" onChange={(event) => setEmail(event.target.value)} />
+          <TextField value={form.email} id="outlined-basic" label="Email" variant="outlined" onChange={(event) => setForm({...form,email: event.target.value})} />
 
           <Button onClick={addData} variant="contained" color="secondary" >Add</Button>
         </Stack>
